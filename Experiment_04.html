@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form Validation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 50px;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+  <script>
+    function validateForm() {
+      let fname = document.getElementById("fname").value;
+      let lname = document.getElementById("lname").value;
+      let password = document.getElementById("password").value;
+      let email = document.getElementById("email").value;
+      let mobile = document.getElementById("mobile").value;
+      let address = document.getElementById("address").value;
+
+      // 1. First Name validation
+      let nameRegex = /^[A-Za-z]+$/;
+      if (fname.length < 3 || !nameRegex.test(fname)) {
+        alert("First name must contain only alphabets and be at least 3 characters long.");
+        return false;
+      }
+
+      // 2. Password validation
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      // 3. Email validation
+      let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email in the format name@domain.com.");
+        return false;
+      }
+
+      // 4. Mobile Number validation
+      let mobileRegex = /^[0-9]{10}$/;
+      if (!mobileRegex.test(mobile)) {
+        alert("Mobile number must contain exactly 10 digits.");
+        return false;
+      }
+
+      // 5. Last Name and Address should not be empty
+      if (lname.trim() === "" || address.trim() === "") {
+        alert("Last Name and Address cannot be empty.");
+        return false;
+      }
+
+      alert("Registration Successful!");
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <h2>Registration Page</h2>
+
+  <form onsubmit="return validateForm()">
+    <label>First Name:</label>
+    <input type="text" id="fname">
+
+    <label>Last Name:</label>
+    <input type="text" id="lname">
+
+    <label>Password:</label>
+    <input type="password" id="password">
+
+    <label>Email ID:</label>
+    <input type="text" id="email">
+
+    <label>Mobile Number:</label>
+    <input type="text" id="mobile">
+
+    <label>Address:</label>
+    <textarea id="address" rows="3"></textarea>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
